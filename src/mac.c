@@ -35,10 +35,10 @@ CGEventRef eventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef eve
     CGKeyCode keyCode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
 
     if (type == kCGEventKeyDown) {
-        printf("%hu ", keyCode);
+        fprintf(stdout, "%hu\n", keyCode);
     } else {
         // TODO: Convert this from '56' (shift) for e.g. to 'Shift'
-        printf("%hu ", keyCode);
+        fprintf(stdout, "%hu\n", keyCode);
     }
 
     return event;
