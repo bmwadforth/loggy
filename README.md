@@ -12,8 +12,7 @@ Simply navigate to the project root and type
 ```
 cmake .
 ```
-
-This will generate the necessary files and output the binary executable under ./cmake-build/debug.
+This will generate the necessary files and output the binary executable under ./cmake-build-debug.
 
 # Key Codes
 
