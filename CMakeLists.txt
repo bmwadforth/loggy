@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
-project(audite C)
+project(loggy C)
 
 set(CMAKE_C_STANDARD 11)
-add_executable(audite main.c include/keystroke/keylogger.h src/keystroke/keylogger.c include/types.h)
+add_executable(loggy main.c include/keystroke/keylogger.h src/keystroke/keylogger.c include/types.h)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(MACOSX TRUE)
@@ -19,5 +19,5 @@ if (MACOSX)
         message(FATAL_ERROR "ApplicationServices not found")
     endif()
 
-    target_link_libraries(audite ${CARBON} ${APPLICATION_SERVICES})
+    target_link_libraries(loggy ${CARBON} ${APPLICATION_SERVICES})
 endif()
