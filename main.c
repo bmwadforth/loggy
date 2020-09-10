@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "include/types.h"
-#include "include/keystroke/keylogger.h"
+#include "include/keylogger.h"
 
 #ifdef _WIN32
 OPERATING_SYSTEM operatingSystem = WINDOWS;
