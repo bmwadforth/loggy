@@ -17,7 +17,8 @@ OPERATING_SYSTEM operatingSystem = MAC;
 int main() {
     switch (operatingSystem) {
         case WINDOWS:
-            printf("Operating System: Windows Not Implemented\n");
+            printf("Operating System: Windows\n");
+            getKeyStrokes();
             return 1;
         case MAC:
             printf("Operating System: MacOS\n");

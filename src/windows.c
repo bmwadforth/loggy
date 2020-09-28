@@ -1,5 +1,6 @@
 #include "../include/keylogger.h"
+#include <stdio.h>
 
 void getKeyStrokes() {
-    exit(1);
+    printf("Windows key stroke logging to be implemented");
 }
