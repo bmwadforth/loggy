@@ -8,6 +8,4 @@ namespace Loggy::Types {
         MAC
     } typedef OPERATING_SYSTEM;
 }
-
-extern Loggy::Types::OPERATING_SYSTEM operatingSystem;
 #endif

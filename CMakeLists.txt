@@ -36,7 +36,7 @@ if (UNIX AND NOT APPLE)
     set(PLATFORM_SOURCE_FILES src/linux.c)
 endif (UNIX AND NOT APPLE)
 
-add_executable(loggy main.cpp include/types.h include/core.h src/core.cpp ${PLATFORM_SOURCE_FILES})
+add_executable(loggy include/core.h include/types.h include/externals.h main.cpp src/core.cpp ${PLATFORM_SOURCE_FILES})
 target_link_libraries(loggy ${PLATFORM_LINK_LIBRARIES})
 
 if (PLATFORM_INCLUDE_DIRECTORIES)

