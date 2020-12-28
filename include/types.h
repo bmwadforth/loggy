@@ -1,10 +1,13 @@
-#ifndef AUDITE_TYPES_H
-#define AUDITE_TYPES_H
-enum OPERATING_SYSTEM {
-    WINDOWS,
-    LINUX,
-    MAC
-} typedef OPERATING_SYSTEM;
+#ifndef LOGGY_TYPES_H
+#define LOGGY_TYPES_H
 
-extern OPERATING_SYSTEM operatingSystem;
+namespace Loggy::Types {
+    enum OPERATING_SYSTEM {
+        WINDOWS,
+        LINUX,
+        MAC
+    } typedef OPERATING_SYSTEM;
+}
+
+extern Loggy::Types::OPERATING_SYSTEM operatingSystem;
 #endif

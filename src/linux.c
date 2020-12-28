@@ -1,4 +1,4 @@
-#include "../include/keylogger.h"
+#include "../include/core.h"
 
 void getKeyStrokes() {
     exit(1);

